@@ -1,0 +1,23 @@
+{
+  "name": "StockPortfolio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maryfan1106/StockPortfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maryfan1106/StockPortfolio/issues"
+  },
+  "homepage": "https://github.com/maryfan1106/StockPortfolio#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
