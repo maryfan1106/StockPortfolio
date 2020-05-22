@@ -14,8 +14,28 @@ const getToken = (user) => {
     return jwt.sign(user, process.env.AUTH_SECRET);
 }
 
+const verifyToken = (req, res, next) => {
+    const bearerHeader = req.headers['authorization'];
+    if(typeof bearerHeader !== 'undefined') {
+        const bearer = bearerHeader.split(' ');
+        const token = bearer[1];
+        try {
+            const user = jwt.verify(token, process.env.AUTH_SECRET);
+            console.log(user);
+            // req.user = user;
+            next();
+          } catch (err) {
+            res.status(400).send({ err });
+          }
+        
+      } else {
+        res.status(403).json({ error: "User is not logged in" });
+      }
+}
+
 module.exports = {
     hashPassword,
     comparePassword,
-    getToken
+    getToken,
+    verifyToken
 };
