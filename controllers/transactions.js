@@ -1,7 +1,7 @@
 const { getUserTransactions } = require("../database/transactions");
 
 const getTransactions = async (request, response) => {
-    getUserTransactions(request.body.id)
+    getUserTransactions(request.user.uid)
     .then((transactions) => {
         response.status(301).json({ transactions });
       })

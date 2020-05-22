@@ -1,13 +1,13 @@
 const pool = require("./pool");
 
-const getUserTransactions = async (id) => {
-    if (!id) {
-        throw "Missing id";
+const getUserTransactions = async (uid) => {
+    if (!uid) {
+        throw "Missing uid";
     }
     const result = await pool.query(
         `SELECT transtype, symbol, shares, price 
         FROM transactions
-        WHERE uid = ${id}
+        WHERE uid = ${uid}
         `
     );
     return result.rows;
