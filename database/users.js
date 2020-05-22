@@ -1,4 +1,5 @@
 const pool = require("./pool");
+const { hashPassword } = require("../services/util");
 
 const getUserById = async (id) => {
     const result = await pool.query(
@@ -16,13 +17,19 @@ const insertUser = async (user) => {
         throw "Missing required field";
     }
 
-    const result = await pool.query(
-        `INSERT INTO users (email, pwhash) 
-        VALUES ($1, $2)
-        `,
-        [email, password]
-    );
-    return result;
+    const pwhash = hashPassword(password);
+
+    try{
+        const result = await pool.query(
+            `INSERT INTO users (email, pwhash) 
+            VALUES ($1, $2)
+            `,
+            [email, pwhash]
+        );
+        return result;
+    } catch(error) {
+        throw "Email is already registered";
+    }
 };
 
 module.exports = {
