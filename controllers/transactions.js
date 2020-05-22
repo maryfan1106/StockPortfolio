@@ -5,8 +5,8 @@ const getTransactions = async (request, response) => {
     .then((transactions) => {
         response.status(301).json({ transactions });
       })
-      .catch((err) =>
-        response.status(404).json({ error: "Transactions not found", err })
+      .catch((error) =>
+        response.status(404).json({ error })
       );
 };
 
