@@ -1,4 +1,5 @@
-const { getUserById, insertUser } = require("../database/users");
+const { getUserById, getUserByEmail, insertUser } = require("../database/users");
+const { comparePassword } = require("../services/util");
 
 const getUser = async (request, response) => {
     getUserById(request.body.id)
@@ -21,7 +22,23 @@ const createUser = async (request, response) => {
     );
 };
 
+const loginUser = async (request, response) => {
+  const { email, password } = request.body;
+  if (!email || !password) {
+    return response.status(400).json({ error: "Missing required field" });
+  }
+  const user = await getUserByEmail(email);
+  if (!user || !comparePassword(password, user.pwhash)) {
+    response.status(400).json({ error: "Invalid email or password" })
+  } else {
+    request.user = user;
+    const { uid, email, pwhash } = user;
+    response.status(200).json({ uid, email, pwhash })
+  }
+};
+
 module.exports = {
     getUser,
-    createUser
+    createUser,
+    loginUser
 };
