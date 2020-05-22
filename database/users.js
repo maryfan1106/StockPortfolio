@@ -32,13 +32,13 @@ const insertUser = async (user) => {
     const pwhash = hashPassword(password);
 
     try{
-        const result = await pool.query(
+        await pool.query(
             `INSERT INTO users (email, pwhash) 
             VALUES ($1, $2)
             `,
             [email, pwhash]
         );
-        return result;
+        return getUserByEmail(email);
     } catch(error) {
         throw "Email is already registered";
     }

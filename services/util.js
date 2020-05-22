@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
@@ -9,7 +10,12 @@ const comparePassword = (plaintextPassword, hash) => {
     return bcrypt.compareSync(plaintextPassword, hash);
 }
 
+const getToken = (user) => {
+    return jwt.sign(user, process.env.AUTH_SECRET);
+}
+
 module.exports = {
     hashPassword,
-    comparePassword
+    comparePassword,
+    getToken
 };

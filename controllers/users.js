@@ -1,5 +1,5 @@
 const { getUserById, getUserByEmail, insertUser } = require("../database/users");
-const { comparePassword } = require("../services/util");
+const { comparePassword, getToken } = require("../services/util");
 
 const getUser = async (request, response) => {
     getUserById(request.body.id)
@@ -15,7 +15,9 @@ const getUser = async (request, response) => {
 const createUser = async (request, response) => {
   insertUser(request.body)
   .then((user) => {
-      response.status(201).json({ user });
+      request.user = user;
+      const token = getToken(request.user);
+      response.status(201).json({ token: token });
     })
     .catch((error) =>
       response.status(400).json({ error })
@@ -32,8 +34,8 @@ const loginUser = async (request, response) => {
     response.status(400).json({ error: "Invalid email or password" })
   } else {
     request.user = user;
-    const { uid, email, pwhash } = user;
-    response.status(200).json({ uid, email, pwhash })
+    const token = getToken(request.user);
+    response.status(200).json({ token: token })
   }
 };
 
