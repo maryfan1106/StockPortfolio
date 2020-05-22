@@ -1,17 +1,11 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const app = express();
+const express = require("express");
+const usersRouter = require("./routes/users");
+const transactionsRouter = require("./routes/transactions");
 const port =  process.env.PORT || 8080;
+const app = express();
 
-app.use(bodyParser.json());
-app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  })
-);
+app.use(express.json());
+app.use("/users", usersRouter);
+app.use("/transactions", transactionsRouter);
 
-app.get('/', (request, response) => {
-    response.send('API is working');
-});
-
-app.listen(port, () => console.log(`App is listening on port ${port}`));
+app.listen(port, () => console.log(`Server is listening on port ${port}`));
