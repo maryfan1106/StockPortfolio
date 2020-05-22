@@ -11,6 +11,18 @@ const getUserById = async (id) => {
     return result.rows[0];
 };
 
+const getUserByEmail = async (email) => {
+    const result = await pool.query(
+        `SELECT uid, email, pwhash 
+        FROM users
+        WHERE email = $1
+        `,
+        [email]
+    );
+    return result.rows[0];
+};
+
+
 const insertUser = async (user) => {
     const { email, password } = user;
     if (!email || !password) {
@@ -34,5 +46,6 @@ const insertUser = async (user) => {
 
 module.exports = {
     getUserById,
+    getUserByEmail,
     insertUser
 };
