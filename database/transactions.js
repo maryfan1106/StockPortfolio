@@ -13,6 +13,26 @@ const getUserTransactions = async (uid) => {
     return result.rows;
 };
 
+const insertTransaction = async (req) => {
+    const { transtype, symbol, shares, price } = req.body;
+    if (!transtype || !symbol || !shares || !price) {
+        throw "Missing required field";
+    }
+
+    try{
+        const result = await pool.query(
+            `INSERT INTO transactions (uid, transtype, symbol, shares, price)
+            VALUES ($1, $2, $3, $4, $5)
+            `,
+            [req.user.uid, transtype, symbol, shares, price]
+        );
+        return result;
+    } catch(error) {
+        throw error;
+    }
+};
+
 module.exports = {
     getUserTransactions,
+    insertTransaction
 };
