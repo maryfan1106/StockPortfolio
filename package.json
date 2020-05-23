@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/maryfan1106/StockPortfolio#readme",
   "dependencies": {
+    "axios": "^0.19.2",
     "bcrypt": "^4.0.1",
     "concurrently": "^5.2.0",
     "dotenv": "^8.2.0",
