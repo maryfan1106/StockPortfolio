@@ -1,5 +1,6 @@
 const pool = require("./pool");
 const { hashPassword } = require("../services/util");
+const { getStockInfo, calculatePerformance } = require("../services/stockapi");
 
 const getAccountBalance = async (uid) => {
     const result = await pool.query(
@@ -22,8 +23,16 @@ const getStocks = async (uid) => {
 }
 
 const getAccountInfo = async (uid) => {
-    const {accountbalance} = await getAccountBalance(uid);
+    const { accountbalance } = await getAccountBalance(uid);
     const stocks = await getStocks(uid);
+    const stockPortfolio = stocks.map(async (stock) => {
+        const stockInfo = await getStockInfo(stock.symbol);
+        const performance = calculatePerformance(stockInfo);
+        const value = (stock.totalshares * stockInfo.latestPrice).toFixed(2);
+        console.log(performance);
+        console.log(value);
+    });
+
     return { accountbalance, stocks };
 }
 

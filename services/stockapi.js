@@ -19,6 +19,21 @@ const getStockInfo = async (symbol) => {
     }
 };
 
+const calculatePerformance = (stockInfo) => {
+    const { open, latestPrice } = stockInfo;
+    if (latestPrice<open) {
+        // display red
+        return 0;
+    } else if (latestPrice>open) {
+        // display green
+        return 2;
+    } else {
+        // display grey
+        return 1;
+    }
+};
+
 module.exports = {
     getStockInfo,
+    calculatePerformance
 };
