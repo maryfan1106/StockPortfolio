@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const { getUser, createUser, loginUser } = require("../controllers/users");
+const { getUserInfo, createUser, loginUser } = require("../controllers/users");
+const { verifyToken } = require("../services/util");
 
-router.get("/", getUser);
+router.get("/", verifyToken, getUserInfo);
 router.post("/signup", createUser);
 router.post("/login", loginUser);
 

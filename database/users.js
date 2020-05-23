@@ -18,7 +18,13 @@ const getStocks = async (uid) => {
         WHERE uid = ${uid}
         `
     );
-    return result.rows[0];
+    return result.rows;
+}
+
+const getAccountInfo = async (uid) => {
+    const {accountbalance} = await getAccountBalance(uid);
+    const stocks = await getStocks(uid);
+    return { accountbalance, stocks };
 }
 
 const getUserById = async (id) => {
@@ -67,6 +73,7 @@ const insertUser = async (user) => {
 module.exports = {
     getAccountBalance,
     getStocks,
+    getAccountInfo,
     getUserById,
     getUserByEmail,
     insertUser

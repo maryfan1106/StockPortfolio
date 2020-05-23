@@ -1,8 +1,8 @@
-const { getUserById, getUserByEmail, insertUser } = require("../database/users");
+const { getAccountInfo,getUserById, getUserByEmail, insertUser } = require("../database/users");
 const { comparePassword, getToken } = require("../services/util");
 
 const getUser = async (request, response) => {
-    getUserById(request.body.id)
+    getUserById(request.user.uid)
     .then((user) => {
         const { uid, email, pwhash } = user;
         response.status(302).json({ uid, email, pwhash });
@@ -10,6 +10,17 @@ const getUser = async (request, response) => {
       .catch((err) =>
         response.status(404).json({ error: "User not found" })
       );
+};
+
+const getUserInfo = async (request, response) => {
+  getAccountInfo(request.user.uid)
+  .then((account) => {
+      const { accountbalance, stocks } = account;
+      response.status(302).json({ accountbalance, stocks });
+    })
+    .catch((err) =>
+      response.status(404).json({ error: "User not found" })
+    );
 };
 
 const createUser = async (request, response) => {
@@ -41,6 +52,7 @@ const loginUser = async (request, response) => {
 
 module.exports = {
     getUser,
+    getUserInfo,
     createUser,
     loginUser
 };
