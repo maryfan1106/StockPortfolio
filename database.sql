@@ -40,3 +40,7 @@ WITH upsert AS (
 INSERT INTO stocks (uid, symbol, totalshares) 
 SELECT 1, 'GOOGL', 10
 WHERE NOT EXISTS (SELECT * FROM upsert);
+
+UPDATE users 
+SET accountbalance = 4500
+WHERE uid = 1;
