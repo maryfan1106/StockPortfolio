@@ -12,7 +12,7 @@ CREATE TABLE users (
 CREATE TABLE transactions (
     tid SERIAL PRIMARY KEY,
     uid INTEGER NOT NULL,
-    transtype ttype NOT NULL,
+    transtype ttype NOT NULL DEFAULT 'BUY',
     symbol TEXT NOT NULL,
     shares INTEGER,
     price NUMERIC(9,2),

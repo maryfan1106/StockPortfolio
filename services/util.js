@@ -15,11 +15,13 @@ const getToken = (user) => {
 }
 
 const verifyToken = (req, res, next) => {
+    // get token from headers
     const bearerHeader = req.headers['authorization'];
     if(typeof bearerHeader !== 'undefined') {
         const bearer = bearerHeader.split(' ');
         const token = bearer[1];
         try {
+            // verify token is valid and set request.user to signed user
             const user = jwt.verify(token, process.env.AUTH_SECRET);
             req.user = user;
             next();

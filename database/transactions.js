@@ -2,9 +2,6 @@ const pool = require("./pool");
 const { getAccountBalance } = require("../database/users");
 
 const getUserTransactions = async (uid) => {
-    if (!uid) {
-        throw "Missing uid";
-    }
     const result = await pool.query(
         `SELECT transtype, symbol, shares, price 
         FROM transactions
@@ -16,6 +13,7 @@ const getUserTransactions = async (uid) => {
 
 const insertTransaction = async (req, info) => {
     const { transtype, shares } = req.body;
+    // transtype: 'BUY' or 'SELL' for future development
     if (!transtype || !shares) {
         throw "Missing required field";
     }
@@ -67,7 +65,6 @@ const insertTransaction = async (req, info) => {
         return "Successfully made transaction";
     } catch(error) {
         await pool.query('ROLLBACK')
-        console.log(error);
         throw "Could not make transaction at this time";
     }
 };

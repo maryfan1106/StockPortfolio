@@ -26,6 +26,7 @@ const getAccountInfo = async (uid) => {
     const { accountbalance } = await getAccountBalance(uid);
     const accountStocks = await getStocks(uid);
     const stocks = await Promise.all( accountStocks.map(async (stock) => {
+        // for each stock owned find the value and performace
         const stockInfo = await getStockInfo(stock.symbol);
         const performance = calculatePerformance(stockInfo);
         const value = (stock.totalshares * stockInfo.latestPrice).toFixed(2);
