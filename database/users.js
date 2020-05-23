@@ -11,6 +11,16 @@ const getAccountBalance = async (uid) => {
     return result.rows[0];
 }
 
+const getStocks = async (uid) => {
+    const result = await pool.query(
+        `SELECT symbol, totalshares
+        FROM stocks
+        WHERE uid = ${uid}
+        `
+    );
+    return result.rows[0];
+}
+
 const getUserById = async (id) => {
     const result = await pool.query(
         `SELECT uid, email, pwhash 
@@ -56,6 +66,7 @@ const insertUser = async (user) => {
 
 module.exports = {
     getAccountBalance,
+    getStocks,
     getUserById,
     getUserByEmail,
     insertUser
