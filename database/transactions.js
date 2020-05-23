@@ -1,4 +1,5 @@
 const pool = require("./pool");
+const { getAccountBalance } = require("../database/users");
 
 const getUserTransactions = async (uid) => {
     if (!uid) {
@@ -12,16 +13,6 @@ const getUserTransactions = async (uid) => {
     );
     return result.rows;
 };
-
-const getAccountBalance = async (uid) => {
-    const result = await pool.query(
-        `SELECT accountbalance
-        FROM users
-        WHERE uid = ${uid}
-        `
-    );
-    return result.rows[0];
-}
 
 const insertTransaction = async (req, info) => {
     const { transtype, shares } = req.body;
