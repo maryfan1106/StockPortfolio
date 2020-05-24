@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Alert, Table, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import '../css/portfolio.css';
 
 const accountInfo = {
@@ -37,6 +37,20 @@ const Portfolio = props => {
     const [accountBalance, setAccountBalance] = useState('');
     const [portfolioValue, setPortfolioValue] = useState('');
     const [stocks, setStocks] = useState([]);
+    
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (!symbol || !shares) {
+            setError({isOpen:true, message:"Please fill in all fields"});
+        } else {
+            if (error.isOpen) setError({isOpen:false, message: ""})
+            alert(`Submitting form with: ${symbol}, ${shares}`)
+            // useEffect to rerender page or display error after post request
+        }
+    }
+    const [symbol, setSymbol] = useState("");
+    const [shares, setShares] = useState("");
+    const [error, setError] = useState({isOpen:false, message:""});
 
     useEffect(()=>{
         fetchData()
@@ -72,16 +86,32 @@ const Portfolio = props => {
             <p>
                 Account Balance: ${accountBalance}
             </p>
-            <Form>
+            <Alert color="danger" isOpen={error.isOpen}>
+                {error.message}
+            </Alert>
+            <Form onSubmit={handleSubmit}>
                 <FormGroup>
                     <Label for="symbolField">Ticker Symbol</Label>
-                    <Input type="text" name="symbol" id="symbolField" placeholder="enter ticker symbol" />
+                    <Input 
+                        type="text" 
+                        name="symbol"
+                        id="symbolField" 
+                        placeholder="enter ticker symbol" 
+                        value={symbol}
+                        onChange={e => setSymbol(e.target.value)}
+                    />
                 </FormGroup>
                 <FormGroup>
                     <Label for="sharesField">Number of Shares</Label>
-                    <Input type="number" name="shares" id="sharesField" placeholder="enter number of shares" />
+                    <Input 
+                        type="number" 
+                        name="shares" 
+                        id="sharesField" 
+                        placeholder="enter number of shares" 
+                        value={shares}
+                        onChange={e => setShares(e.target.value)}/>
                 </FormGroup>
-                <Button>Submit</Button>
+                <Button type="submit" value="Submit">Submit</Button>
             </Form>
         </div>
     );
