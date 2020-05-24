@@ -25,7 +25,7 @@ export const getAccountInfo = () => {
   return axios
   .get(`/users/`, {
         headers: {
-        Authorization: 'Bearer ' + Cookies.get('token')
+          Authorization: 'Bearer ' + Cookies.get('token')
         }
     })
   .then((res) => {

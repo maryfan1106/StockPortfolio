@@ -6,12 +6,21 @@ import '../css/portfolio.css';
 
 const Portfolio = props => {
     const fetchData = async () => {
+        console.log("fetching data");
         const accountInfo = await getAccountInfo();
         setAccountBalance(accountInfo.accountbalance);
         setPortfolioValue(accountInfo.portfolioValue);
         setStocks(accountInfo.stocks);
         setLoading(false);
     }
+
+    const setSuccess = (mess) => {
+        console.log(mess);
+        // setLoading(true); 
+        // fetchData();
+        setMessage({isOpen:true, message: mess, color:"success"})
+    };
+    const setErrorMessage = (err) => setMessage({isOpen:true, message: err, color:"danger"});
 
     const [isLoading, setLoading] = useState(true);
     const [accountBalance, setAccountBalance] = useState('');
@@ -21,10 +30,12 @@ const Portfolio = props => {
     const handleSubmit = (e) => {
         e.preventDefault();
         // clear previous error
-        if (message.isOpen) setMessage({isOpen:false, message: "", color:""})
-
-        alert(`Submitting form with: ${symbol}, ${shares}`)
-        // useEffect to rerender page or display error after post request
+        if (message.isOpen) setMessage({isOpen:false, message: "", color:""});
+        makeTransaction(
+            {transtype: 'BUY', symbol, shares: Number(shares)},
+            setSuccess,
+            setErrorMessage
+        );
     }
     const [symbol, setSymbol] = useState("");
     const [shares, setShares] = useState("");

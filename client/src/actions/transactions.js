@@ -25,7 +25,9 @@ export const makeTransaction = (transaction, cb, errCb) => {
     }
   })
   // if successfully made transaction, display success message
-  .then(cb("success"))
+  .then((res) => {
+    cb(res.data.transaction);
+  })
   // return error to display as alert
-  .catch(err => errCb({color:"danger", message:err.response.data.error}));
+  .catch(err => errCb(err.response.data.error));
 };
