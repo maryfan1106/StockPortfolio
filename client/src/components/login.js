@@ -2,17 +2,25 @@ import React, { useContext, useState } from 'react';
 import { RootContext } from '../auth/rootContextProvider';
 import { Redirect } from 'react-router-dom';
 import { Alert, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { logIn } from '../actions/users';
 
 const Login = props => {
     const context = useContext(RootContext);
-    console.log(context);
+
+    const setAuth = () => context.setAuthenticated();
+    const setErrorMessage = err => setError({isOpen:true, message: err});
 
     const handleSubmit = (e) => {
         e.preventDefault();
         // clear previous error
         if (error.isOpen) setError({isOpen:false, message: ""});
-        console.log(`Logging in with: ${email}, ${password}`);
-        context.setAuthenticated();
+        logIn(
+            {email, password},
+            setAuth,
+            setErrorMessage
+        );
+        // console.log(`Logging in with: ${email}, ${password}`);
+        // context.setAuthenticated();
         // redirect to homescreen or display error after post request
     }
 

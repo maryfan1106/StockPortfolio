@@ -8,5 +8,10 @@ export const logIn = (user, cb, errCb) => {
   .then((res) => Cookies.set("token", res.data.token))
   .then(cb)
   // return error to display as alert
-  .catch(err => errCb(err));
+  .catch(err => errCb(err.response.data.error));
+};
+
+export const logOut = (cb) => {
+  Cookies.remove("token");
+  return cb
 };
