@@ -23,19 +23,22 @@ const getStocks = async (uid) => {
 }
 
 const getAccountInfo = async (uid) => {
+    let portfolioValue = 0;
     const { accountbalance } = await getAccountBalance(uid);
     const accountStocks = await getStocks(uid);
     const stocks = await Promise.all( accountStocks.map(async (stock) => {
         // for each stock owned find the value and performace
         const stockInfo = await getStockInfo(stock.symbol);
         const performance = calculatePerformance(stockInfo);
-        const value = (stock.totalshares * stockInfo.latestPrice).toFixed(2);
+        const value = stockInfo.latestPrice;
         stock.value = value;
         stock.performance = performance;
+        portfolioValue += stock.totalshares * value;
         return stock;
     }));
+    portfolioValue=portfolioValue.toFixed(2);
 
-    return { accountbalance, stocks };
+    return { accountbalance, portfolioValue, stocks };
 }
 
 const getUserById = async (id) => {

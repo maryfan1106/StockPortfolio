@@ -15,8 +15,8 @@ const getUser = async (request, response) => {
 const getUserInfo = async (request, response) => {
   getAccountInfo(request.user.uid)
   .then((account) => {
-      const { accountbalance, stocks } = account;
-      response.status(302).json({ accountbalance, stocks });
+      const { accountbalance, portfolioValue, stocks } = account;
+      response.status(200).json({ accountbalance, portfolioValue, stocks });
     })
     .catch((err) =>
       response.status(404).json({ error: "User not found" })
