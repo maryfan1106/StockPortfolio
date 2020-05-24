@@ -14,10 +14,12 @@ const Portfolio = props => {
         setLoading(false);
     }
 
-    const setSuccess = (mess) => {
+    const setSuccess = async (mess) => {
         console.log(mess);
-        // setLoading(true); 
-        // fetchData();
+        const accountInfo = await getAccountInfo();
+        setAccountBalance(accountInfo.accountbalance);
+        setPortfolioValue(accountInfo.portfolioValue);
+        setStocks(accountInfo.stocks);
         setMessage({isOpen:true, message: mess, color:"success"})
     };
     const setErrorMessage = (err) => setMessage({isOpen:true, message: err, color:"danger"});

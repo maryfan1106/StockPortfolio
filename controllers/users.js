@@ -13,6 +13,7 @@ const getUser = async (request, response) => {
 };
 
 const getUserInfo = async (request, response) => {
+  console.log(request.user.uid)
   getAccountInfo(request.user.uid)
   .then((account) => {
       const { accountbalance, portfolioValue, stocks } = account;

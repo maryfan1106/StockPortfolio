@@ -26,9 +26,14 @@ const getAccountInfo = async (uid) => {
     let portfolioValue = 0;
     const { accountbalance } = await getAccountBalance(uid);
     const accountStocks = await getStocks(uid);
+
     const stocks = await Promise.all( accountStocks.map(async (stock) => {
         // for each stock owned find the value and performace
+        console.log(stock.symbol);
+        // somethings wrong with BBY
         const stockInfo = await getStockInfo(stock.symbol);
+        console.log("after");
+
         const performance = calculatePerformance(stockInfo);
         const value = stockInfo.latestPrice;
         stock.value = value;
