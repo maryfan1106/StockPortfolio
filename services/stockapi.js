@@ -23,13 +23,13 @@ const calculatePerformance = (stockInfo) => {
     const { open, latestPrice } = stockInfo;
     if (latestPrice<open) {
         // display red
-        return 0;
+        return 'negative';
     } else if (latestPrice>open) {
         // display green
-        return 2;
+        return 'positive';
     } else {
         // display grey
-        return 1;
+        return 'equal';
     }
 };
 
