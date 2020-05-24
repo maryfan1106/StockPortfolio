@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { RootContext } from './rootContextProvider';
+import { Redirect } from 'react-router-dom';
 import { Alert, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 const Signup = props => {
+    const context = useContext(RootContext);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         // clear previous error
-        if (error.isOpen) setError({isOpen:false, message: ""})
-        alert(`Signing up with: ${email}, ${password}`)
+        if (error.isOpen) setError({isOpen:false, message: ""});
+        console.log(`Signing up with: ${email}, ${password}`);
+        context.setAuthenticated();
         // redirect to homescreen or display error after post request
     }
 
@@ -14,6 +19,8 @@ const Signup = props => {
     const [password, setPassword] = useState("");
     const [error, setError] = useState({isOpen:false, message:""});
 
+    // redirect to portfolio page if already logged in
+    if (context.authenticated) {return < Redirect to='/' />};
     return (
         <div>
             <h3>
