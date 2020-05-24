@@ -20,3 +20,15 @@ export const signUp = (user, cb, errCb) => {
   // return error to display as alert
   .catch(err => errCb(err.response.data.error));
 };
+
+export const getAccountInfo = () => {
+  return axios
+  .get(`/users/`, {
+        headers: {
+        Authorization: 'Bearer ' + Cookies.get('token')
+        }
+    })
+  .then((res) => {
+      return res.data;
+  });
+};

@@ -1,39 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Alert, Table, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { getAccountInfo } from '../actions/users';
 import '../css/portfolio.css';
 
-const accountInfo = {
-    "accountbalance": "121.57",
-    "value": "13100.70",
-    "stocks": [
-        {
-            "symbol": "NFLX",
-            "totalshares": 30,
-            "value": "131.12",
-            "performance": "negative"
-        },
-        {
-            "symbol": "GE",
-            "totalshares": 10,
-            "value": "66.10",
-            "performance": "equal"
-        },
-        {
-            "symbol": "GOOGL",
-            "totalshares": 17,
-            "value": "250.27",
-            "performance": "positive"
-        }
-    ]
-}
-
 const Portfolio = props => {
-    const fetchData = () => {
+    const fetchData = async () => {
+        const accountInfo = await getAccountInfo();
         setAccountBalance(accountInfo.accountbalance);
-        setPortfolioValue(accountInfo.value);
+        setPortfolioValue(accountInfo.portfolioValue);
         setStocks(accountInfo.stocks);
+        setLoading(false);
     }
 
+    const [isLoading, setLoading] = useState(true);
     const [accountBalance, setAccountBalance] = useState('');
     const [portfolioValue, setPortfolioValue] = useState('');
     const [stocks, setStocks] = useState([]);
@@ -53,7 +32,8 @@ const Portfolio = props => {
         fetchData()
     },[]);
 
-    return (
+    return isLoading ? (<div>Loading</div>) :
+    (
         <div>
             <div className="column">
                 <h3>
