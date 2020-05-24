@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Table, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import '../css/portfolio.css';
 
@@ -28,9 +28,19 @@ const accountInfo = {
 }
 
 const Portfolio = props => {
-    const [accountBalance, setAccountBalance] = useState(accountInfo.accountbalance);
-    const [portfolioValue, setPortfolioValue] = useState(accountInfo.value);
-    const [stocks, setStocks] = useState(accountInfo.stocks);
+    const fetchData = () => {
+        setAccountBalance(accountInfo.accountbalance);
+        setPortfolioValue(accountInfo.value);
+        setStocks(accountInfo.stocks);
+    }
+
+    const [accountBalance, setAccountBalance] = useState({});
+    const [portfolioValue, setPortfolioValue] = useState({});
+    const [stocks, setStocks] = useState([]);
+
+    useEffect(()=>{
+        fetchData()
+    },[]);
 
     return (
         <div>
