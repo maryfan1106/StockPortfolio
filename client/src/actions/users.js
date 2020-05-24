@@ -11,7 +11,6 @@ export const logIn = (user, cb, errCb) => {
   .catch(err => errCb(err.response.data.error));
 };
 
-export const logOut = (cb) => {
+export const logOut = () => {
   Cookies.remove("token");
-  return cb
 };
