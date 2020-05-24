@@ -7,7 +7,7 @@ import Login from './components/login';
 import Transactions from './components/transactions';
 import NavBar from './components/navbar';
 import { Container } from 'reactstrap';
-import { AuthenticatedRoute } from './components/authRoute';
+import { AuthenticatedRoute } from './auth/authRoute';
 
 const App = () => {
   return (

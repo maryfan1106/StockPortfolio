@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { RootContext } from './rootContextProvider';
+import { RootContext } from '../auth/rootContextProvider';
 import { Redirect } from 'react-router-dom';
 import { Alert, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 

@@ -6,7 +6,7 @@ import {
     NavLink,
     NavbarText
   } from 'reactstrap';
-import { RootContext } from './rootContextProvider';
+import { RootContext } from '../auth/rootContextProvider';
 
 const NavBar = props => {
     const context = useContext(RootContext);

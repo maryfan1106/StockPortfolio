@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { RootContextProvider } from './components/rootContextProvider';
+import { RootContextProvider } from './auth/rootContextProvider';
 
 ReactDOM.render(
   <RootContextProvider>
