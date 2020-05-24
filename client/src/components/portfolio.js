@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Alert, Table, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { getAccountInfo } from '../actions/users';
+import { makeTransaction } from '../actions/transactions';
 import '../css/portfolio.css';
 
 const Portfolio = props => {
@@ -20,13 +21,14 @@ const Portfolio = props => {
     const handleSubmit = (e) => {
         e.preventDefault();
         // clear previous error
-        if (error.isOpen) setError({isOpen:false, message: ""})
+        if (message.isOpen) setMessage({isOpen:false, message: "", color:""})
+
         alert(`Submitting form with: ${symbol}, ${shares}`)
         // useEffect to rerender page or display error after post request
     }
     const [symbol, setSymbol] = useState("");
     const [shares, setShares] = useState("");
-    const [error, setError] = useState({isOpen:false, message:""});
+    const [message, setMessage] = useState({isOpen:false, message:"", color:""});
 
     useEffect(()=>{
         fetchData()
@@ -66,8 +68,8 @@ const Portfolio = props => {
                 <h3>
                     Account Balance: ${accountBalance}
                 </h3>
-                <Alert color="danger" isOpen={error.isOpen}>
-                    {error.message}
+                <Alert color={message.color} isOpen={message.isOpen}>
+                    {message.message}
                 </Alert>
                 <Form onSubmit={handleSubmit}>
                     <FormGroup>
