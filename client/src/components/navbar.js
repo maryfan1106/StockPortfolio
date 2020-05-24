@@ -1,12 +1,15 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
     Navbar,
     Nav,
     NavItem,
     NavLink,
   } from 'reactstrap';
+import { RootContext } from './rootContextProvider';
 
 const NavBar = props => {
+    const context = useContext(RootContext);
+
     return (
         <Navbar color="faded" light>
             <Nav className="ml-auto">
@@ -17,7 +20,7 @@ const NavBar = props => {
                 <NavLink href="/transactions">Transactions</NavLink>
                 </NavItem>
                 <NavItem>
-                <NavLink href="/login">Login</NavLink>
+                <button onClick={context.removeAuthenticated}>Log out</button>
                 </NavItem>
             </Nav>
         </Navbar>

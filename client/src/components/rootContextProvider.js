@@ -4,18 +4,16 @@ export const RootContext = React.createContext();
 
 // provides authentication context for protected routes
 export const RootContextProvider = ({ children }) => {
-    const [authenticatedState, dispatch] = useReducer(authReducer, { authenticated: false });
+    // check for token each time user goes to protected route
+    const prevAuth = window.localStorage.getItem('auth') || false;
+    const [authenticatedState, dispatch] = useReducer(authReducer, { authenticated: prevAuth });
 
     const setAuthenticated = () => {
-        setTimeout(() => {
-            dispatch({ type: SET_AUTH });
-        }, 700);
+        dispatch({ type: SET_AUTH });
     };
 
     const removeAuthenticated = () => {
-        setTimeout(() => {
-            dispatch({ type: REMOVE_AUTH });
-        }, 700);
+        dispatch({ type: REMOVE_AUTH });
     };
     
     const defaultContext = {
