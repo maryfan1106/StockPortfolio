@@ -2,17 +2,24 @@ import React, { useContext, useState } from 'react';
 import { RootContext } from '../auth/rootContextProvider';
 import { Redirect } from 'react-router-dom';
 import { Alert, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { signUp } from '../actions/users';
 
 const Signup = props => {
     const context = useContext(RootContext);
+
+    const setAuth = () => context.setAuthenticated();
+    const setErrorMessage = err => setError({isOpen:true, message: err});
 
     const handleSubmit = (e) => {
         e.preventDefault();
         // clear previous error
         if (error.isOpen) setError({isOpen:false, message: ""});
-        console.log(`Signing up with: ${email}, ${password}`);
-        context.setAuthenticated();
-        // redirect to homescreen or display error after post request
+        // signup with user, setAuth on success, setError on failure
+        signUp(
+            {email, password},
+            setAuth,
+            setErrorMessage
+        );
     }
 
     const [email, setEmail] = useState("");

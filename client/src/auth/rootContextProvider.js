@@ -5,7 +5,6 @@ export const RootContext = React.createContext();
 
 // provides authentication context for protected routes
 export const RootContextProvider = ({ children }) => {
-    console.log(Cookies.get("token"));
     // check for token each time user goes to protected route
     const prevAuth = Cookies.get("token")!=null;
     const [authenticatedState, dispatch] = useReducer(authReducer, { authenticated: prevAuth });

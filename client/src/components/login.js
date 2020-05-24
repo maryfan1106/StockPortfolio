@@ -14,14 +14,12 @@ const Login = props => {
         e.preventDefault();
         // clear previous error
         if (error.isOpen) setError({isOpen:false, message: ""});
+        // login with user, setAuth on success, setError on failure
         logIn(
             {email, password},
             setAuth,
             setErrorMessage
         );
-        // console.log(`Logging in with: ${email}, ${password}`);
-        // context.setAuthenticated();
-        // redirect to homescreen or display error after post request
     }
 
     const [email, setEmail] = useState("");
