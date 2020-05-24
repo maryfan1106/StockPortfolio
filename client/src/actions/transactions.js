@@ -8,7 +8,6 @@ export const getTransactions = () => {
         Authorization: 'Bearer ' + Cookies.get('token')
         }
     })
-  // if successfully logged in, setAuth
   .then((res) => {
       return res.data.transactions;
   });

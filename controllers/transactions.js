@@ -4,7 +4,7 @@ const { getStockInfo } = require("../services/stockapi");
 const getTransactions = async (request, response) => {
     getUserTransactions(request.user.uid)
     .then((transactions) => {
-        response.status(302).json({ transactions });
+        response.status(200).json({ transactions });
       })
       .catch((error) =>
         response.status(404).json({ error })
