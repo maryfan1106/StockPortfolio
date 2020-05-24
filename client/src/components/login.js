@@ -5,12 +5,14 @@ import { Alert, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 const Login = props => {
     const context = useContext(RootContext);
+    console.log(context);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         // clear previous error
-        if (error.isOpen) setError({isOpen:false, message: ""})
-        alert(`Logging in with: ${email}, ${password}`)
+        if (error.isOpen) setError({isOpen:false, message: ""});
+        console.log(`Logging in with: ${email}, ${password}`);
+        context.setAuthenticated();
         // redirect to homescreen or display error after post request
     }
 
