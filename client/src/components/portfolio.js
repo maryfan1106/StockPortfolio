@@ -40,13 +40,10 @@ const Portfolio = props => {
     
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!symbol || !shares) {
-            setError({isOpen:true, message:"Please fill in all fields"});
-        } else {
-            if (error.isOpen) setError({isOpen:false, message: ""})
-            alert(`Submitting form with: ${symbol}, ${shares}`)
-            // useEffect to rerender page or display error after post request
-        }
+        // clear previous error
+        if (error.isOpen) setError({isOpen:false, message: ""})
+        alert(`Submitting form with: ${symbol}, ${shares}`)
+        // useEffect to rerender page or display error after post request
     }
     const [symbol, setSymbol] = useState("");
     const [shares, setShares] = useState("");
@@ -96,6 +93,7 @@ const Portfolio = props => {
                     <FormGroup>
                         <Label for="symbolField">Ticker Symbol</Label>
                         <Input 
+                            required
                             type="text" 
                             name="symbol"
                             id="symbolField" 
@@ -107,6 +105,7 @@ const Portfolio = props => {
                     <FormGroup>
                         <Label for="sharesField">Number of Shares</Label>
                         <Input 
+                            required
                             type="number" 
                             name="shares" 
                             id="sharesField" 
