@@ -1,10 +1,12 @@
 const axios = require('axios');
 
 const getStockInfo = async (symbol) => {
+    console.log(symbol)
     try {
         // make get request for open and lastestPrice
         const response = await axios.get(`https://sandbox.iexapis.com/stable/stock/${symbol}/quote/?filter=symbol,open,latestPrice&token=${process.env.API_KEY}`);
         const { data } = await response;
+        console.log(data);
         // if open is null
         if (!data.open) {
             // make get request for previous open

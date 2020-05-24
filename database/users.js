@@ -29,8 +29,7 @@ const getAccountInfo = async (uid) => {
 
     const stocks = await Promise.all( accountStocks.map(async (stock) => {
         // for each stock owned find the value and performace
-        console.log(stock.symbol);
-        // somethings wrong with BBY
+        // there's probably a limit to hit the external api, always throws error on 4th call
         const stockInfo = await getStockInfo(stock.symbol);
         console.log("after");
 
