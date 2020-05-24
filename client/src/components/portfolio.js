@@ -44,12 +44,12 @@ const Portfolio = props => {
                 </thead>
                 <tbody>
                     {
-                        stocks.map(stock => {
+                        stocks.map((stock, index) => {
                             return (
-                                <tr className={stock.performance}>
-                                <td>{stock.symbol}</td>
-                                <td>{stock.totalshares}</td>
-                                <td>${stock.value}</td>
+                                <tr className={stock.performance} key={index}>
+                                    <td>{stock.symbol}</td>
+                                    <td>{stock.totalshares}</td>
+                                    <td>${stock.value}</td>
                                 </tr>
                             )
                         })

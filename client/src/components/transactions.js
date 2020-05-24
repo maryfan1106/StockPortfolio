@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Table } from 'reactstrap';
 
 const sampleTransactions = [
@@ -47,7 +47,15 @@ const sampleTransactions = [
 ];
 
 const Transactions = props => {
-    const [transactions, setTransactions] = useState(sampleTransactions);
+    const fetchData = () => {
+        setTransactions(sampleTransactions);
+    }
+
+    const [transactions, setTransactions] = useState([]);
+
+    useEffect(() => {
+        fetchData();
+    },[]);
 
     return (
         <div>
@@ -62,13 +70,13 @@ const Transactions = props => {
                 </thead>
                 <tbody>
                     {
-                        transactions.map(transaction => {
+                        transactions.map((transaction, index) => {
                             return (
-                                <tr>
-                                <td>{transaction.transtype}</td>
-                                <td>{transaction.symbol}</td>
-                                <td>{transaction.shares}</td>
-                                <td>${transaction.price}</td>
+                                <tr key={index}>
+                                    <td>{transaction.transtype}</td>
+                                    <td>{transaction.symbol}</td>
+                                    <td>{transaction.shares}</td>
+                                    <td>${transaction.price}</td>
                                 </tr>
                             )
                         })
