@@ -55,7 +55,7 @@ const Portfolio = props => {
 
     return (
         <div>
-            <div class="column">
+            <div className="column">
                 <h3>
                     Portfolio (${portfolioValue})
                 </h3>
@@ -82,7 +82,7 @@ const Portfolio = props => {
                     </tbody>
                 </Table>
             </div>
-            <div class="column">
+            <div className="column">
                 <h3>
                     Account Balance: ${accountBalance}
                 </h3>

@@ -7,6 +7,7 @@ import Login from './components/login';
 import Transactions from './components/transactions';
 import NavBar from './components/navbar';
 import { Container } from 'reactstrap';
+import { AuthenticatedRoute } from './components/authRoute';
 
 const App = () => {
   return (
@@ -14,10 +15,10 @@ const App = () => {
       <div className="App">
         <Route path="/" component={NavBar} />
         <Container>
-          <Route exact path="/" component={Portfolio} />
+          <AuthenticatedRoute exact path="/" component={Portfolio} />
+          <AuthenticatedRoute exact path="/transactions" component={Transactions} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/login" component={Login} />
-          <Route exact path="/transactions" component={Transactions} />
         </Container>
       </div>
     </Router>
