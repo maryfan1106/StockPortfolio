@@ -34,8 +34,8 @@ const Portfolio = props => {
         setStocks(accountInfo.stocks);
     }
 
-    const [accountBalance, setAccountBalance] = useState({});
-    const [portfolioValue, setPortfolioValue] = useState({});
+    const [accountBalance, setAccountBalance] = useState('');
+    const [portfolioValue, setPortfolioValue] = useState('');
     const [stocks, setStocks] = useState([]);
 
     useEffect(()=>{
@@ -44,6 +44,9 @@ const Portfolio = props => {
 
     return (
         <div>
+            <header>
+                Portfolio (${portfolioValue})
+            </header>
             <Table>
                 <thead>
                     <tr>
@@ -66,6 +69,9 @@ const Portfolio = props => {
                     }
                 </tbody>
             </Table>
+            <p>
+                Account Balance: ${accountBalance}
+            </p>
             <Form>
                 <FormGroup>
                     <Label for="symbolField">Ticker Symbol</Label>
