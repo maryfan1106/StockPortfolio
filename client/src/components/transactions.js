@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Table } from 'reactstrap';
+import { getTransactions } from '../actions/transactions';
 
 const sampleTransactions = [
     {
@@ -47,8 +48,10 @@ const sampleTransactions = [
 ];
 
 const Transactions = props => {
-    const fetchData = () => {
-        setTransactions(sampleTransactions);
+    const fetchData = async () => {
+        const userTransactions = await getTransactions();
+        console.log(userTransactions);
+        setTransactions(userTransactions);
     }
 
     const [transactions, setTransactions] = useState([]);
