@@ -9,3 +9,15 @@
 .positive{ 
     color: green
 } 
+
+.column {
+    float: left;
+    width: 50%;
+    padding: 25px;
+}
+
+@media screen and (max-width:600px) {
+    .column {
+      width: 100%;
+    }
+}

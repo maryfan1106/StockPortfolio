@@ -58,61 +58,65 @@ const Portfolio = props => {
 
     return (
         <div>
-            <header>
-                Portfolio (${portfolioValue})
-            </header>
-            <Table>
-                <thead>
-                    <tr>
-                    <th>Ticker Symbol</th>
-                    <th>Shares Owned</th>
-                    <th>Current Price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        stocks.map((stock, index) => {
-                            return (
-                                <tr className={stock.performance} key={index}>
-                                    <td>{stock.symbol}</td>
-                                    <td>{stock.totalshares}</td>
-                                    <td>${stock.value}</td>
-                                </tr>
-                            )
-                        })
-                    }
-                </tbody>
-            </Table>
-            <p>
-                Account Balance: ${accountBalance}
-            </p>
-            <Alert color="danger" isOpen={error.isOpen}>
-                {error.message}
-            </Alert>
-            <Form onSubmit={handleSubmit}>
-                <FormGroup>
-                    <Label for="symbolField">Ticker Symbol</Label>
-                    <Input 
-                        type="text" 
-                        name="symbol"
-                        id="symbolField" 
-                        placeholder="enter ticker symbol" 
-                        value={symbol}
-                        onChange={e => setSymbol(e.target.value)}
-                    />
-                </FormGroup>
-                <FormGroup>
-                    <Label for="sharesField">Number of Shares</Label>
-                    <Input 
-                        type="number" 
-                        name="shares" 
-                        id="sharesField" 
-                        placeholder="enter number of shares" 
-                        value={shares}
-                        onChange={e => setShares(e.target.value)}/>
-                </FormGroup>
-                <Button type="submit" value="Submit">Submit</Button>
-            </Form>
+            <div class="column">
+                <h3>
+                    Portfolio (${portfolioValue})
+                </h3>
+                <Table>
+                    <thead>
+                        <tr>
+                        <th>Ticker Symbol</th>
+                        <th>Shares Owned</th>
+                        <th>Current Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            stocks.map((stock, index) => {
+                                return (
+                                    <tr className={stock.performance} key={index}>
+                                        <td>{stock.symbol}</td>
+                                        <td>{stock.totalshares}</td>
+                                        <td>${stock.value}</td>
+                                    </tr>
+                                )
+                            })
+                        }
+                    </tbody>
+                </Table>
+            </div>
+            <div class="column">
+                <h3>
+                    Account Balance: ${accountBalance}
+                </h3>
+                <Alert color="danger" isOpen={error.isOpen}>
+                    {error.message}
+                </Alert>
+                <Form onSubmit={handleSubmit}>
+                    <FormGroup>
+                        <Label for="symbolField">Ticker Symbol</Label>
+                        <Input 
+                            type="text" 
+                            name="symbol"
+                            id="symbolField" 
+                            placeholder="enter ticker symbol" 
+                            value={symbol}
+                            onChange={e => setSymbol(e.target.value)}
+                        />
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for="sharesField">Number of Shares</Label>
+                        <Input 
+                            type="number" 
+                            name="shares" 
+                            id="sharesField" 
+                            placeholder="enter number of shares" 
+                            value={shares}
+                            onChange={e => setShares(e.target.value)}/>
+                    </FormGroup>
+                    <Button type="submit" value="Submit">Submit</Button>
+                </Form>
+            </div>
         </div>
     );
   };

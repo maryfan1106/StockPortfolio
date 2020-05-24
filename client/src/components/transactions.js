@@ -59,7 +59,10 @@ const Transactions = props => {
 
     return (
         <div>
-            <Table>
+            <h3 style={{margin:25}}>
+                Transactions
+            </h3>
+            <Table style={{margin:25}}>
                 <thead>
                     <tr>
                     <th>Transaction Type</th>
