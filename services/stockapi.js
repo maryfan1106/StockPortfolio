@@ -1,8 +1,15 @@
 const axios = require('axios');
 
 const getStockInfo = async (symbol) => {
+    // timout function to resolve pending promis
+    function timeout(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
     console.log(symbol)
     try {
+        // set timeout to limit requests
+        await timeout(500);
         // make get request for open and lastestPrice
         const response = await axios.get(`https://sandbox.iexapis.com/stable/stock/${symbol}/quote/?filter=symbol,open,latestPrice&token=${process.env.API_KEY}`);
         const { data } = await response;
@@ -17,6 +24,7 @@ const getStockInfo = async (symbol) => {
         }
         return data;
     } catch (err) {
+        console.log(err);
         throw("Invalid ticker symbol");
     }
 };

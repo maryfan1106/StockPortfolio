@@ -11,20 +11,14 @@ const Portfolio = props => {
         setAccountBalance(accountInfo.accountbalance);
         setPortfolioValue(accountInfo.portfolioValue);
         setStocks(accountInfo.stocks);
-        setLoading(false);
     }
 
     const setSuccess = async (mess) => {
-        console.log(mess);
-        const accountInfo = await getAccountInfo();
-        setAccountBalance(accountInfo.accountbalance);
-        setPortfolioValue(accountInfo.portfolioValue);
-        setStocks(accountInfo.stocks);
+        fetchData();
         setMessage({isOpen:true, message: mess, color:"success"})
     };
     const setErrorMessage = (err) => setMessage({isOpen:true, message: err, color:"danger"});
 
-    const [isLoading, setLoading] = useState(true);
     const [accountBalance, setAccountBalance] = useState('');
     const [portfolioValue, setPortfolioValue] = useState('');
     const [stocks, setStocks] = useState([]);
@@ -47,8 +41,7 @@ const Portfolio = props => {
         fetchData()
     },[]);
 
-    return isLoading ? (<div>Loading</div>) :
-    (
+    return (
         <div>
             <div className="column">
                 <h3>

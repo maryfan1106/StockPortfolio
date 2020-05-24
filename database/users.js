@@ -29,10 +29,8 @@ const getAccountInfo = async (uid) => {
 
     const stocks = await Promise.all( accountStocks.map(async (stock) => {
         // for each stock owned find the value and performace
-        // there's probably a limit to hit the external api, always throws error on 4th call
+        // external api error: status 429 too many requests (after 4th hit)
         const stockInfo = await getStockInfo(stock.symbol);
-        console.log("after");
-
         const performance = calculatePerformance(stockInfo);
         const value = stockInfo.latestPrice;
         stock.value = value;
