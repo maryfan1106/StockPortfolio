@@ -1,17 +1,19 @@
 const axios = require('axios');
+const { backOff } =  require('exponential-backoff');
 
 const getStockInfo = async (symbol) => {
-    // timout function to resolve pending promis
-    function timeout(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
+    // timeout function to resolve pending promise
+    // function timeout(ms) {
+    //     return new Promise(resolve => setTimeout(resolve, ms));
+    // }
 
     console.log(symbol)
     try {
-        // set timeout to limit requests
-        await timeout(500);
+        // // set timeout to limit requests
+        // await timeout(500);
         // make get request for open and lastestPrice
-        const response = await axios.get(`https://sandbox.iexapis.com/stable/stock/${symbol}/quote/?filter=symbol,open,latestPrice&token=${process.env.API_KEY}`);
+        // use exponential backoff as recommended by external api documentation
+        const response = await backOff(() => axios.get(`https://sandbox.iexapis.com/stable/stock/${symbol}/quote/?filter=symbol,open,latestPrice&token=${process.env.API_KEY}`));
         const { data } = await response;
         console.log(data);
         // if open is null
