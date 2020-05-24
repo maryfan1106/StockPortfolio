@@ -15,6 +15,7 @@ export const RootContextProvider = ({ children }) => {
     };
 
     const removeAuthenticated = () => {
+        Cookies.remove("token");
         dispatch({ type: REMOVE_AUTH });
     };
     

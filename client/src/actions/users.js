@@ -10,7 +10,3 @@ export const logIn = (user, cb, errCb) => {
   // return error to display as alert
   .catch(err => errCb(err.response.data.error));
 };
-
-export const logOut = () => {
-  Cookies.remove("token");
-};

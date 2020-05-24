@@ -7,7 +7,6 @@ import {
     NavbarText
   } from 'reactstrap';
 import { RootContext } from '../auth/rootContextProvider';
-// import { logOut } from '../actions/users';
 
 const NavBar = props => {
     const context = useContext(RootContext);
@@ -22,7 +21,7 @@ const NavBar = props => {
                 <NavLink href="/transactions">Transactions</NavLink>
                 </NavItem>
                 <NavItem>
-                    {context.authenticated ? <NavbarText>Logout</NavbarText> :
+                    {context.authenticated ? <NavbarText onClick={context.removeAuthenticated}>Logout</NavbarText> :
                     <NavLink href="/login">Login</NavLink>}
                 </NavItem>
             </Nav>
