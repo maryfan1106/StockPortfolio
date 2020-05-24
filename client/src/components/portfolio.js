@@ -1,7 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Table, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import '../css/portfolio.css';
+
+const accountInfo = {
+    "accountbalance": "121.57",
+    "value": "13100.70",
+    "stocks": [
+        {
+            "symbol": "NFLX",
+            "totalshares": 30,
+            "value": "131.12",
+            "performance": "negative"
+        },
+        {
+            "symbol": "GE",
+            "totalshares": 10,
+            "value": "66.10",
+            "performance": "equal"
+        },
+        {
+            "symbol": "GOOGL",
+            "totalshares": 17,
+            "value": "250.27",
+            "performance": "positive"
+        }
+    ]
+}
 
 const Portfolio = props => {
+    const [accountBalance, setAccountBalance] = useState(accountInfo.accountbalance);
+    const [portfolioValue, setPortfolioValue] = useState(accountInfo.value);
+    const [stocks, setStocks] = useState(accountInfo.stocks);
+
     return (
         <div>
             <Table>
@@ -13,21 +43,17 @@ const Portfolio = props => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                    <td>APPL</td>
-                    <td>50</td>
-                    <td>$545.68</td>
-                    </tr>
-                    <tr>
-                    <td>GOOGL</td>
-                    <td>25</td>
-                    <td>$87.97</td>
-                    </tr>
-                    <tr>
-                    <td>NFLX</td>
-                    <td>30</td>
-                    <td>$234.56</td>
-                    </tr>
+                    {
+                        stocks.map(stock => {
+                            return (
+                                <tr className={stock.performance}>
+                                <td>{stock.symbol}</td>
+                                <td>{stock.totalshares}</td>
+                                <td>${stock.value}</td>
+                                </tr>
+                            )
+                        })
+                    }
                 </tbody>
             </Table>
             <Form>
