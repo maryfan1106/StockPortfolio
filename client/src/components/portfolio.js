@@ -10,9 +10,11 @@ const Portfolio = props => {
         setAccountBalance(accountInfo.accountbalance);
         setPortfolioValue(accountInfo.portfolioValue);
         setStocks(accountInfo.stocks);
+        setLoading(false);
     }
 
     const setSuccess = async (mess) => {
+        setLoading(true);
         fetchData();
         setMessage({isOpen:true, message: mess, color:"success"})
     };
@@ -31,6 +33,7 @@ const Portfolio = props => {
     const [accountBalance, setAccountBalance] = useState('');
     const [portfolioValue, setPortfolioValue] = useState('');
     const [stocks, setStocks] = useState([]);
+    const [isLoading, setLoading] = useState(true);
     
     const [symbol, setSymbol] = useState("");
     const [shares, setShares] = useState("");
@@ -47,29 +50,32 @@ const Portfolio = props => {
                     Portfolio (${portfolioValue})
                 </h3>
                 {
-                    stocks.length<1 ? <div style={{textAlign:'center'}}>You don't own any stocks</div> : 
-                    <Table>
-                        <thead>
-                            <tr>
-                            <th>Ticker Symbol</th>
-                            <th>Shares Owned</th>
-                            <th>Current Price</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                stocks.map((stock, index) => {
-                                    return (
-                                        <tr className={stock.performance} key={index}>
-                                            <td>{stock.symbol}</td>
-                                            <td>{stock.totalshares}</td>
-                                            <td>${stock.value}</td>
-                                        </tr>
-                                    )
-                                })
-                            }
-                        </tbody>
-                    </Table>
+                    isLoading ? <div style={{textAlign:'center'}}>Loading . . . </div> :
+                    (
+                        stocks.length<1 ? <div style={{textAlign:'center'}}>You don't own any stocks</div> : 
+                        <Table>
+                            <thead>
+                                <tr>
+                                <th>Ticker Symbol</th>
+                                <th>Shares Owned</th>
+                                <th>Current Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    stocks.map((stock, index) => {
+                                        return (
+                                            <tr className={stock.performance} key={index}>
+                                                <td>{stock.symbol}</td>
+                                                <td>{stock.totalshares}</td>
+                                                <td>${stock.value}</td>
+                                            </tr>
+                                        )
+                                    })
+                                }
+                            </tbody>
+                        </Table>
+                    )
                 }
             </div>
             <div className="column">

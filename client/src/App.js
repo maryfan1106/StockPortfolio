@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Portfolio from './components/portfolio';
 import Signup from './components/signup';
@@ -15,10 +15,13 @@ const App = () => {
       <div className="App">
         <Route path="/" component={NavBar} />
         <Container>
-          <AuthenticatedRoute exact path="/" component={Portfolio} />
-          <AuthenticatedRoute exact path="/transactions" component={Transactions} />
-          <Route exact path="/signup" component={Signup} />
-          <Route exact path="/login" component={Login} />
+          <Switch>
+            <AuthenticatedRoute exact path="/" component={Portfolio} />
+            <AuthenticatedRoute exact path="/transactions" component={Transactions} />
+            <Route exact path="/signup" component={Signup} />
+            <Route exact path="/login" component={Login} />
+            <Route path="*" component={()=>{ return <div style={{textAlign:'center'}}>Page not found</div>}} />
+          </Switch>
         </Container>
       </div>
     </Router>
