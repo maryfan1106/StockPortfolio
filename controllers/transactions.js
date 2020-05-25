@@ -22,8 +22,9 @@ const makeTransaction = async (request, response) => {
       response.status(400).json({ error })
       );
     })
-    .catch((error) =>
-    response.status(400).json({ error })
+    .catch((error) => {
+      response.status(400).json({ error })
+    }
     );
 };
 

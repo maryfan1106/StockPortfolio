@@ -42,7 +42,6 @@ const loginUser = async (request, response) => {
   }
   const user = await getUserByEmail(email);
   if (!user || !comparePassword(password, user.pwhash)) {
-    console.log("BRO");
     response.status(400).json({ error: "Invalid email or password" })
   } else {
     request.user = user;

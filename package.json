@@ -22,6 +22,7 @@
   "homepage": "https://github.com/maryfan1106/StockPortfolio#readme",
   "dependencies": {
     "axios": "^0.19.2",
+    "backoff": "^2.5.0",
     "bcrypt": "^4.0.1",
     "client": "file:client",
     "concurrently": "^5.2.0",
