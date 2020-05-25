@@ -1,8 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { RootContext } from '../auth/rootContextProvider';
 import { Redirect } from 'react-router-dom';
-import { Alert, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Alert, Form, Label, Input } from 'reactstrap';
 import { signUp } from '../actions/users';
+import '../css/forms.css';
 
 const Signup = props => {
     const context = useContext(RootContext);
@@ -29,15 +30,15 @@ const Signup = props => {
     // redirect to portfolio page if already logged in
     if (context.authenticated) {return < Redirect to='/' />};
     return (
-        <div>
-            <h3>
-                Signup
+        <div class="input-form">
+            <h3 style={{textAlign:"center"}}>
+                Stock Portfolio
             </h3>
             <Alert color="danger" isOpen={error.isOpen}>
                 {error.message}
             </Alert>
             <Form onSubmit={handleSubmit}>
-                <FormGroup>
+                <div className="input-field">
                     <Label for="emailField">Email</Label>
                     <Input 
                         required
@@ -47,8 +48,8 @@ const Signup = props => {
                         value={email}
                         onChange={e => setEmail(e.target.value)}
                     />
-                </FormGroup>
-                <FormGroup>
+                </div>
+                <div class="input-field">
                     <Label for="passwordField">Password</Label>
                     <Input 
                         required
@@ -57,10 +58,10 @@ const Signup = props => {
                         id="passwordField" 
                         value={password}
                         onChange={e => setPassword(e.target.value)}/>
-                </FormGroup>
-                <Button type="submit" value="Submit">Sign Up</Button>
+                </div>
+                <button class="submit-button" type="submit" value="Submit">Sign Up</button>
             </Form>
-            <p>
+            <p style={{textAlign:"center"}}>
                 Already have an account? 
                 <a href="/login"> Login</a> 
             </p>

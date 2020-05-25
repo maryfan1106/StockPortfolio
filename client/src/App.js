@@ -12,7 +12,7 @@ import { AuthenticatedRoute } from './auth/authRoute';
 const App = () => {
   return (
     <Router>
-      <div className="App">
+      <div>
         <Route path="/" component={NavBar} />
         <Container>
           <Switch>
