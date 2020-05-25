@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Table } from 'reactstrap';
 import { getTransactions } from '../actions/transactions';
+import '../css/transactions.css';
 
 const Transactions = props => {
     const fetchData = async () => {
@@ -17,7 +18,7 @@ const Transactions = props => {
     },[]);
 
     return (
-        <div>
+        <div className="transactions">
             <h3 style={{margin:25}}>
                 Transactions
             </h3>
@@ -25,7 +26,7 @@ const Transactions = props => {
                 isLoading ? <div style={{textAlign:'center'}}>Loading . . . </div> :
                 (
                     transactions.length<1 ? <div style={{textAlign:'center'}}>You have no transaction</div> : 
-                    <Table style={{margin:25}}>
+                    <Table striped style={{textAlign:'center', color:'white'}}>
                         <thead>
                             <tr>
                             <th>Transaction Type</th>

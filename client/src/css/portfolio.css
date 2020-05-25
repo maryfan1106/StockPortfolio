@@ -13,7 +13,7 @@
 .column {
     float: left;
     width: 50%;
-    padding: 25px;
+    padding: 75px;
 }
 
 @media screen and (max-width:600px) {

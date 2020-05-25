@@ -30,8 +30,8 @@ const Signup = props => {
     // redirect to portfolio page if already logged in
     if (context.authenticated) {return < Redirect to='/' />};
     return (
-        <div class="input-form">
-            <h3 style={{textAlign:"center"}}>
+        <div className="input-form">
+            <h3 style={{textAlign:"center", padding:30}}>
                 Stock Portfolio
             </h3>
             <Alert color="danger" isOpen={error.isOpen}>
@@ -49,7 +49,7 @@ const Signup = props => {
                         onChange={e => setEmail(e.target.value)}
                     />
                 </div>
-                <div class="input-field">
+                <div className="input-field">
                     <Label for="passwordField">Password</Label>
                     <Input 
                         required
@@ -59,7 +59,7 @@ const Signup = props => {
                         value={password}
                         onChange={e => setPassword(e.target.value)}/>
                 </div>
-                <button class="submit-button" type="submit" value="Submit">Sign Up</button>
+                <button className="submit-button" type="submit" value="Submit">Sign Up</button>
             </Form>
             <p style={{textAlign:"center"}}>
                 Already have an account? 

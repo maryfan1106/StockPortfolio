@@ -53,7 +53,7 @@ const Portfolio = props => {
                     isLoading ? <div style={{textAlign:'center'}}>Loading . . . </div> :
                     (
                         stocks.length<1 ? <div style={{textAlign:'center'}}>You don't own any stocks</div> : 
-                        <Table>
+                        <Table style={{textAlign:'center', color:'white'}}>
                             <thead>
                                 <tr>
                                 <th>Ticker Symbol</th>
@@ -109,7 +109,7 @@ const Portfolio = props => {
                             value={shares}
                             onChange={e => setShares(e.target.value)}/>
                     </FormGroup>
-                    <Button type="submit" value="Submit">Submit</Button>
+                    <Button style={{width: '100%'}}type="submit" value="Submit">BUY</Button>
                 </Form>
             </div>
         </div>
