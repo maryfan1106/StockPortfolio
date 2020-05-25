@@ -34,6 +34,6 @@ export const getAccountInfo = () => {
   .catch((err) => {
     console.log(err)
     // send default values
-    return { accountbalance: 5000.00, portfolioValue: 0, stocks: [] };
+    return { accountbalance: err.response.data.accountbalance, portfolioValue: -1, stocks: [] };
   })
 };

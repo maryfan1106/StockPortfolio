@@ -1,4 +1,4 @@
-const { getAccountInfo,getUserById, getUserByEmail, insertUser } = require("../database/users");
+const { getAccountBalance, getAccountInfo,getUserById, getUserByEmail, insertUser } = require("../database/users");
 const { comparePassword, getToken } = require("../services/util");
 
 const getUser = async (request, response) => {
@@ -18,8 +18,10 @@ const getUserInfo = async (request, response) => {
       const { accountbalance, portfolioValue, stocks } = account;
       response.status(200).json({ accountbalance, portfolioValue, stocks });
     })
-    .catch((err) =>
-      response.status(404).json({ error: "User not found" })
+    .catch(async (err) => {
+      const {accountbalance} = await getAccountBalance(request.user.uid);
+      response.status(400).json({ error: err, accountbalance})
+    }
     );
 };
 

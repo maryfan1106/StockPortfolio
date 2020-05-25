@@ -46,11 +46,15 @@ const Portfolio = props => {
     return (
         <div>
             <div className="column">
-                <h3>
-                    Portfolio (${portfolioValue})
-                </h3>
                 {
-                    isLoading ? <div style={{textAlign:'center'}}>Loading . . . </div> :
+                    portfolioValue<0 ? <div style={{textAlign:'center'}}> Could not get stock info at this time </div> :
+                    <h3>
+                        Portfolio (${portfolioValue})
+                    </h3>
+                }
+                
+                {
+                    isLoading || portfolioValue<0 ? <div style={{textAlign:'center'}}> . . . </div> :
                     (
                         stocks.length<1 ? <div style={{textAlign:'center'}}>You don't own any stocks</div> : 
                         <Table style={{textAlign:'center', color:'white'}}>
