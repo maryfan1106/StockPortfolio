@@ -12,7 +12,6 @@ export const getTransactions = () => {
       return res.data.transactions;
   })
   .catch(err => {
-    console.log(err)
     return ([]);
   });
 };

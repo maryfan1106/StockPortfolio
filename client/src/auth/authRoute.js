@@ -5,7 +5,6 @@ import { RootContext } from './rootContextProvider';
 export const AuthenticatedRoute = ({ component:Component, ...props }) => {
     // get auth context from root provider
     const { authenticated } = useContext(RootContext);
-    console.log(authenticated);
     return (
         // return route if authenticated and redirect otherwise
         <Route

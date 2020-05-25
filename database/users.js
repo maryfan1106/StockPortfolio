@@ -23,6 +23,7 @@ const getStocks = async (uid) => {
 }
 
 const getAccountInfo = async (uid) => {
+    // probably shouldn't return as one object but they're all connected, future development: separate and use different errorHandlers
     let portfolioValue = 0;
     const { accountbalance } = await getAccountBalance(uid);
     const accountStocks = await getStocks(uid);
