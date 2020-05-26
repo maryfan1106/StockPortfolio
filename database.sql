@@ -25,22 +25,3 @@ CREATE TABLE stocks (
     totalshares INTEGER DEFAULT 0,
     FOREIGN KEY (uid) REFERENCES users (uid) 
 );
-
-INSERT INTO users (email, pwhash) 
-VALUES ('test@gmail.com', 'password123');
-
-INSERT INTO transactions (uid, transtype, symbol, shares, price)
-VALUES (16, 'BUY', 'MSFT', 15, 183.45);
-
-WITH upsert AS (
-     UPDATE stocks SET totalshares=totalshares+10
-     WHERE uid=1 AND symbol='GOOGL' 
-     RETURNING *
-)
-INSERT INTO stocks (uid, symbol, totalshares) 
-SELECT 1, 'GOOGL', 10
-WHERE NOT EXISTS (SELECT * FROM upsert);
-
-UPDATE users 
-SET accountbalance = 4500
-WHERE uid = 1;

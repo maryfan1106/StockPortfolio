@@ -7,7 +7,8 @@
     "start": "node index.js",
     "server": "nodemon index.js",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "repository": {
     "type": "git",
@@ -22,17 +23,14 @@
   "homepage": "https://github.com/maryfan1106/StockPortfolio#readme",
   "dependencies": {
     "axios": "^0.19.2",
-    "backoff": "^2.5.0",
     "bcrypt": "^4.0.1",
     "client": "file:client",
     "concurrently": "^5.2.0",
     "dotenv": "^8.2.0",
     "exponential-backoff": "^3.0.0",
     "express": "^4.17.1",
-    "js-cookie": "^2.2.1",
     "jsonwebtoken": "^8.5.1",
-    "pg": "^8.2.1",
-    "react-router-dom": "^5.2.0"
+    "pg": "^8.2.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
