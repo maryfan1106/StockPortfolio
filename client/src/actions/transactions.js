@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 
 export const getTransactions = () => {
   return axios
-  .get(`/transactions/`, {
+  .get(`/transactionsapi/`, {
         headers: {
           Authorization: 'Bearer ' + Cookies.get('token')
         }
@@ -18,7 +18,7 @@ export const getTransactions = () => {
 
 export const makeTransaction = (transaction, cb, errCb) => {
   return axios
-  .post(`/transactions/`, transaction, {
+  .post(`/transactionsapi/`, transaction, {
     headers: {
       Authorization: 'Bearer ' + Cookies.get('token')
     }
