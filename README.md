@@ -5,13 +5,13 @@ Full stack web application created with Postgresql, Express, React, Node
 Features:
 
 Email/Password Authentication
-![](https://imgflip.com/gif/42vbqw)
+![](https://github.com/maryfan1106/StockPortfolio/blob/add-readme/stock-portfolio-gifs/stock-portfolio-auth.gif)
 
 Unique Email
-![](https://imgflip.com/gif/42vbxo)
+![](https://github.com/maryfan1106/StockPortfolio/blob/add-readme/stock-portfolio-gifs/stock-portfolio-unique-email.gif)
 
 Transaction Validations (valid ticker symbol, valid number of shares, enough money)
-![](https://imgflip.com/gif/42vc1y)
+![](https://github.com/maryfan1106/StockPortfolio/blob/add-readme/stock-portfolio-gifs/stock-portfolio-transaction-validations.gif)
 
 Save Transactions to Portfolio and get latest stock data
-![](https://imgflip.com/gif/42vc6v)
+![](https://github.com/maryfan1106/StockPortfolio/blob/add-readme/stock-portfolio-gifs/stock-portfolio-valid-transaction.gif)
