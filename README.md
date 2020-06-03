@@ -1,6 +1,8 @@
 # Stock Portfolio
 
-Full stack web application created with Postgresql, Express, React, Node 
+Full stack web application created with Postgresql, Express, React, Node
+
+Avaliable at: https://mysterious-thicket-67859.herokuapp.com/
 
 Features:
 
